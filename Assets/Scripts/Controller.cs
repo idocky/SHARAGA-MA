@@ -17,6 +17,7 @@ public class Controller : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        isUseButton.buttonActive = false;
     }
     private void FixedUpdate()
     {
