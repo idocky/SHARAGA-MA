@@ -8,8 +8,13 @@ public class StudentAI : MonoBehaviour
     public float speed = 10f;
     public GameObject sprite;
     public Transform[] Targets = new Transform[10];
+    public Sprite[] walkSprite = new Sprite[4];
     Transform curTarget = null;
 
+    private void Start()
+    {
+        StartCoroutine(Walk());
+    }
 
     void Update()
     {
@@ -34,5 +39,18 @@ public class StudentAI : MonoBehaviour
             sprite.transform.Rotate(0, 0, 0);
         else
             sprite.transform.Rotate(0, 180, 0);
+    }
+
+    IEnumerator Walk()
+    {
+        yield return new WaitForSeconds(0.25f);
+        sprite.GetComponent<SpriteRenderer>().sprite = walkSprite[0];
+        yield return new WaitForSeconds(0.25f);
+        sprite.GetComponent<SpriteRenderer>().sprite = walkSprite[1];
+        yield return new WaitForSeconds(0.25f);
+        sprite.GetComponent<SpriteRenderer>().sprite = walkSprite[2];
+        yield return new WaitForSeconds(0.25f);
+        sprite.GetComponent<SpriteRenderer>().sprite = walkSprite[3];
+        StartCoroutine(Walk());
     }
 }
